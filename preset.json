@@ -1,0 +1,31 @@
+{
+  "useConfigFiles": true, // 用这个文件里的 configs 覆盖 vue cli 工具箱中的 vue.config.js
+  "packageManager": "npm",
+  "router": true,   // 启用 路由
+  "routerHistoryMode": false,
+  "vuex": true, // 启用状态管理
+  "cssPreprocessor": "less",
+  "css": {
+    "sourceMap": true
+  },
+  "configs": {
+    "vue": {
+      "baseUrl": "/",
+      "outputDir": "dist",
+      "filenameHashing": true,
+      "productionSourceMap": false,
+      "devServer": {
+        "host": "0.0.0.0",
+        "open": true
+      },
+      "pluginOptions": {}
+    }
+  },
+  "plugins": {
+    "@vue/cli-plugin-babel": {},
+    "vue-cli-plugin-auto-routing": {},
+    "vue-cli-plugin-style-resources-loader": {
+      "preProcessor": "less"
+    }
+  }
+}
