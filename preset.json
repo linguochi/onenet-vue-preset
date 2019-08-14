@@ -1,9 +1,10 @@
 {
-  "useConfigFiles": true, // 用这个文件里的 configs 覆盖 vue cli 工具箱中的 vue.config.js
+  "useConfigFiles": true,
   "packageManager": "npm",
-  "router": true,   // 启用 路由
+  "useTaobaoRegistry": true,
+  "router": true,
   "routerHistoryMode": false,
-  "vuex": true, // 启用状态管理
+  "vuex": true,
   "cssPreprocessor": "less",
   "css": {
     "sourceMap": true
