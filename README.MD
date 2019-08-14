@@ -6,5 +6,5 @@ OneNET vue项目开发预设模板
 # 首先安装vue-cli 3.0
 > npm install -g @vue/cli
 
-> vue create --preset gitlab:gitlab.onenet.com/linguochi/onenet-vue-preset --clone my-project
+> vue create --preset gitlab.onenet.com:linguochi/onenet-vue-preset --clone projectName
 ```
