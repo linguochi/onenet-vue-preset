@@ -24,6 +24,12 @@
   },
   "plugins": {
     "@vue/cli-plugin-babel": {},
+    "@vue/cli-plugin-eslint": {
+      "config": "prettier",
+      "lintOn": [
+        "commit"
+      ]
+    },
     "vue-cli-plugin-auto-routing": {},
     "vue-cli-plugin-style-resources-loader": {
       "preProcessor": "less"
