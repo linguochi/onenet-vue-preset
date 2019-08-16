@@ -20,6 +20,8 @@ module.exports = (api, options, rootOptions) => {
     eslintConfig: {
       rules: {
         'indent': ['error', 2],
+        // 关闭 prettier 里面的eslint选项
+        'prettier/prettier': 'off',
         // 以下的选项来自 https://github.com/AlloyTeam/eslint-config-alloy/blob/master/vue.js
         /**
          * 支持在模版中使用 eslint-disable-next-line 等注释
