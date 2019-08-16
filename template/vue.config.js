@@ -44,4 +44,13 @@ module.exports = {
   filenameHashing: true,
   productionSourceMap: false,
   pages: generatePagesConfig({ pagesDir: './src/pages/' }),
+  pluginOptions: {
+    'style-resources-loader': {
+      'preProcessor': 'less',
+      'patterns': [
+        './src/style/mixin.less',
+        './src/style/theme.less'
+      ]
+    }
+  }
 };
