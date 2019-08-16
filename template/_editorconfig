@@ -24,6 +24,6 @@ indent_style = space
 indent_size = 2
 
 # Matches the exact files either package.json or .travis.yml
-[{package.json,vue.config.js}]
+[{package.json,vue-pages.config.js}]
 indent_style = space
 indent_size = 2
