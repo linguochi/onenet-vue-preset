@@ -16,7 +16,11 @@
     },
     "vue-cli-plugin-auto-routing": {},
     "vue-cli-plugin-style-resources-loader": {
-      "preProcessor": "less"
+      "preProcessor": "less",
+      "patterns": [
+        "./src/style/mixin.less",
+        "./src/style/theme.less"
+      ]
     }
   }
 }

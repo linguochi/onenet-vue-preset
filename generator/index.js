@@ -74,17 +74,6 @@ module.exports = (api, options, rootOptions) => {
       axios: '^0.18.0',
       nprogress: '^0.2.0',
       'normalize.css': '^8.0.1'
-    },
-    vue: {
-      css: {
-        sourceMap: true
-      },
-      pluginOptions: {
-        'style-resources-loader': {
-          preProcessor: 'less',
-          patterns: ['./src/style/mixin.less', './src/style/theme.less']
-        }
-      }
     }
   });
   if (options['ui-framework'] === 'element-ui') {
