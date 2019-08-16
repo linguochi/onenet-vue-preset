@@ -24,6 +24,9 @@ module.exports = api => {
         }
       }
       fs.rmdirSync(dir);//如果文件夹是空的，就将自己删除掉
+    },
+    successTip() {
+      console.log('hello , 项目已成功安装，开始愉快编程吧');
     }
   };
 };

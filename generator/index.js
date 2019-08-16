@@ -61,6 +61,13 @@ module.exports = (api, options, rootOptions) => {
   //   }
   // });
 
+  // 删除 vue-cli3 默认目录
+  api.render(files => {
+    Object.keys(files)
+    .filter(path => path.startsWith('src/') || path.startsWith('public/'))
+    .forEach(path => delete files[path]);
+  });
+
   api.render('../template'); // 使用 EJS 渲染 ../template 中的文件
   api.extendPackage({
     dependencies: {
@@ -86,7 +93,6 @@ module.exports = (api, options, rootOptions) => {
     require('./iview.js')(api, options);
   }
   api.onCreateComplete(() => {
-    utils.deleteFile('./src/store.js'); // 删除原有的store文件
-    utils.deleteDir('./src/views');
+    utils.successTip();
   });
 };
