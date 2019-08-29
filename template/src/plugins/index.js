@@ -2,12 +2,9 @@ import Vue from "vue";
 import axios from "./axios";
 import vueLoading from './loading.vue'
 const loading = {
-    show(isLoading) {
+    show() {
         const div = document.createElement("div");
         div.innerHTML = `<vue-loading ></vue-loading>`;
-        if (isLoading == "other") {
-            div.innerHTML = `<vue-loading :is-other="true"></vue-loading>`;
-        }
         document.body.appendChild(div);
         loadingComponent = new Vue({
             el: div,
@@ -16,14 +13,16 @@ const loading = {
         loadingIndex == 0 && loadingComponent.show();
         loadingIndex += 1;
     },
-    hide(isLoading) {},
-    error(isLoading) {}
+    hide() {
+        loadingIndex -= 1;
+        loadingIndex == 0 && loadingComponent.hide();
+    }
 };
 Object.defineProperties(Vue.prototype, {
     $http: {
         get(url, params, isLoading = false, config = {}) {
             isLoading = isLoading || false;
-            isLoading && loading.show(isLoading);
+            isLoading && loading.show();
             return new Promise((resolve, reject) => {
                 axios({
                     method: "get",
@@ -32,18 +31,18 @@ Object.defineProperties(Vue.prototype, {
                     ...config
                 })
                     .then(res => {
-                        isLoading && loading.hide(isLoading);
+                        isLoading && loading.hide();
                         resolve(res.data);
                     })
                     .catch(err => {
-                        isLoading && loading.error(isLoading);
+                        isLoading && loading.hide();
                         reject(err.data);
                     });
             });
         },
         post(url, data, isLoading = false, config = {}) {
             isLoading = isLoading || false;
-            isLoading && loading.show(isLoading);
+            isLoading && loading.show();
             return new Promise((resolve, reject) => {
                 axios({
                     method: "post",
@@ -52,11 +51,11 @@ Object.defineProperties(Vue.prototype, {
                     ...config
                 })
                     .then(res => {
-                        isLoading && loading.hide(isLoading);
+                        isLoading && loading.hide();
                         resolve(res.data);
                     })
                     .catch(err => {
-                        isLoading && loading.error(isLoading);
+                        isLoading && loading.hide();
                         reject(err.data);
                     });
             });

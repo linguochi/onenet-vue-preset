@@ -1,38 +1,30 @@
 <template>
-    <transition name="loading-fade">
-        <div :class="['loading-base', {'other': isOther}]" v-if="isShow">
-            <div class="loading">
-                <div>
-                    <!-- <img class="loading-gif" src="./logo.png"/> -->
+    <div>
+        <transition name="loading-fade" v-if="ui === 'none'">
+            <div :class="loading-base" v-if="isShow">
+                <div class="loading">
+                    <div>
+                        <svg viewBox="25 25 50 50" class="loading-gif">
+                            <circle class="loading-circle" cx="50" cy="50" r="20" fill="none"></circle>
+                        </svg>
+                    </div>
                 </div>
             </div>
-        </div>
-    </transition>
-    <Spin fix v-if="ui==='iview' && isShow">
-        <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
-        <div>Loading</div>
-    </Spin>
-    <div
-    v-loading.fullscreen.lock="isShow"
-    v-if="ui === 'element'"
-    >
+        </transition>
+        <Spin fix v-if="ui==='iview' && isShow">
+            <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
+            <div>Loading</div>
+        </Spin>
+        <div v-loading.fullscreen.lock="isShow" v-if="ui === 'element'"></div>
     </div>
 </template>
 
 <script>
 export default {
-    props: {
-        isOther: {
-            type: Boolean,
-            default() {
-                return false;
-            }
-        }
-    },
     data() {
         return {
             isShow: false,
-            ui: ""
+            ui: "none"
         };
     },
     components: {},
@@ -45,6 +37,13 @@ export default {
             document.getElementsByTagName("body")[0].style.overflow = "inherit";
             this.isShow = false;
         }
+    },
+    mounted() {
+        this.$loading
+            ? (this.ui = "element")
+            : this.$Spin
+            ? (this.ui = "iview")
+            : (this.ui = "none");
     }
 };
 </script>
@@ -79,10 +78,6 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-    &.other {
-        top: 50px;
-        left: 200px;
-    }
 }
 .loading {
     position: absolute;
@@ -92,24 +87,21 @@ export default {
         position: relative;
         padding-top: 1px;
         margin: -50%;
-        height: 120px;
-        width: 150px;
-        span {
-            color: #ffffff;
-            font-size: 14px;
-            text-align: center;
-            display: block;
-            position: absolute;
-            margin-top: -15px;
-            width: 100%;
-        }
+        width: 42px;
+        height: 42px;
     }
     .loading-gif {
         display: block;
         margin: 28px auto;
+        width: 42px;
+        height: 42px;
+        .loading-circle {
+            stroke-dasharray: 90, 150;
+            stroke-width: 2;
+            stroke: #409eff;
+        }
     }
 }
-
 .spin-icon-load {
     animation: ani-demo-spin 1s linear infinite;
 }
