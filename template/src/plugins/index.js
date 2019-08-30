@@ -1,6 +1,7 @@
 import Vue from "vue";
 import axios from "./axios";
 import vueLoading from './loading.vue'
+var loadingComponent = null,  loadingIndex = 0;
 const loading = {
     show() {
         const div = document.createElement("div");

@@ -12,12 +12,20 @@ module.exports = (api, options, rootOptions) => {
         scripts: {
             "lint:fix": "vue-cli-service lint --fix",
             "build:dev": "vue-cli-service build --mode dev",
-            "build:test": "vue-cli-service build --mode test"
+            "build:test": "vue-cli-service build --mode test",
+            "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
         }
     });
-
     api.extendPackage({
         eslintConfig: {
+            plugins: ["html", "prettier"],
+            extends: [
+                // "plugin:vue/essential",
+                // "@vue/prettier",
+                "eslint:recommended",
+                "plugin:vue/strongly-recommended",
+                "plugin:prettier/recommended"
+            ],
             rules: {
                 indent: ["error", 2],
                 // 关闭 prettier 里面的eslint选项
@@ -479,11 +487,67 @@ module.exports = (api, options, rootOptions) => {
                  * @category Uncategorized
                  * @fixable
                  */
-                "vue/v-on-function-call": "error"
+                "vue/v-on-function-call": "error",
+
+                // "off" 或 0 - 关闭规则
+                // "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+                // "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+                // 允许无paren箭头函数
+                "arrow-parens": 0,
+                //文件末尾强制换行
+                "eol-last": 0,
+                "no-debugger":
+                    process.env.NODE_ENV === "production" ? "error" : "off",
+                "no-console":
+                    process.env.NODE_ENV === "production" ? "error" : "off",
+                "no-useless-escape": 0,
+                "no-multiple-empty-lines": [
+                    2,
+                    {
+                        max: 3
+                    }
+                ],
+                "space-before-function-paren": 0,
+                "no-restricted-syntax": "off", //
+                "guard-for-in": "off", //
+                "prefer-const": "off", //
+                "no-else-return": "off", //
+                "no-plusplus": "off", // 不允许使用++符号
+                "object-shorthand": ["error", "always", { avoidQuotes: false }], // 去除禁止'videoData.isPause'(newValue) 的命名
+                "no-lonely-if": "off", // 不允许给函数参数重新赋值
+                "no-param-reassign": "off", // 不允许给函数参数重新赋值
+                "no-mixed-operators": "off", // 不允许混合使用运算符
+                "no-underscore-dangle": "off", // 不允许下划线作为变量名之一
+                "no-under": "off", // 不允许混合使用运算符
+                "generator-star-spacing": "off",
+                semi: ["error", "always"], //语句强制分号结尾
+                "comma-dangle": ["error"],
+                eqeqeq: "off", // 不需要强制使用全等
+                "max-len": "off",
+                radix: "off", // parseInt不需要传第二个参数
+                "linebreak-style": "off", // 强制执行一致的换行样式，windows和mac不一样
+                "consistent-return": "off", // 箭头函数最后不需要最后强制return值
+                "no-unused-expressions": [
+                    "error",
+                    { allowShortCircuit: true, allowTernary: true }
+                ], // 允许您在表达式中使用三元运算符
+                "no-multi-spaces": ["error", { ignoreEOLComments: true }]
             }
         }
     });
-
+    api.extendPackage({
+        prettier: {
+            printWidth: 80, // 每行代码长度（默认80）
+            tabWidth: 2, // 每个tab相当于多少个空格（默认2）
+            useTabs: false, // 是否使用tab进行缩进（默认false）
+            singleQuote: true, // 使用单引号（默认false）
+            semi: true, // 声明结尾使用分号(默认true)
+            trailingComma: "all", // 多行使用拖尾逗号（默认none）
+            bracketSpacing: true, // 对象字面量的大括号间使用空格（默认true）
+            jsxBracketSameLine: false, // 多行JSX中的>放置在最后一行的结尾，而不是另起一行（默认false）
+            arrowParens: "avoid" // 只有一个参数的箭头函数的参数是否带圆括号（默认avoid）
+        }
+    });
     // commitizen - 协助开发者提交标准的 git message
     // api.extendPackage({
     //   devDependencies: {
