@@ -13,18 +13,19 @@ module.exports = (api, options, rootOptions) => {
             "lint:fix": "vue-cli-service lint --fix",
             "build:dev": "vue-cli-service build --mode dev",
             "build:test": "vue-cli-service build --mode test",
-            "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
+            format:
+                "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
         }
     });
     api.extendPackage({
         eslintConfig: {
-            plugins: ["html", "prettier"],
+            plugins: ["html", "prettier", "standard"],
             extends: [
-                // "plugin:vue/essential",
-                // "@vue/prettier",
                 "eslint:recommended",
-                "plugin:vue/strongly-recommended",
-                "plugin:prettier/recommended"
+                "plugin:prettier/recommended",  
+                // 扩展一个流行的js风格指南，即 eslint-config-standard
+                // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
+                "standard"
             ],
             rules: {
                 indent: ["error", 2],
@@ -489,52 +490,22 @@ module.exports = (api, options, rootOptions) => {
                  */
                 "vue/v-on-function-call": "error",
 
+                // https://www.cnblogs.com/macliu/p/9489391.html
                 // "off" 或 0 - 关闭规则
                 // "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
                 // "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
-                // 允许无paren箭头函数
+
+                indent: ["error", 2],
+                // allow paren-less arrow functions
                 "arrow-parens": 0,
-                //文件末尾强制换行
-                "eol-last": 0,
-                "no-debugger":
-                    process.env.NODE_ENV === "production" ? "error" : "off",
-                "no-console":
-                    process.env.NODE_ENV === "production" ? "error" : "off",
-                "no-useless-escape": 0,
-                "no-multiple-empty-lines": [
-                    2,
-                    {
-                        max: 3
-                    }
-                ],
-                "space-before-function-paren": 0,
-                "no-restricted-syntax": "off", //
-                "guard-for-in": "off", //
-                "prefer-const": "off", //
-                "no-else-return": "off", //
-                "no-plusplus": "off", // 不允许使用++符号
-                "object-shorthand": ["error", "always", { avoidQuotes: false }], // 去除禁止'videoData.isPause'(newValue) 的命名
-                "no-lonely-if": "off", // 不允许给函数参数重新赋值
-                "no-param-reassign": "off", // 不允许给函数参数重新赋值
-                "no-mixed-operators": "off", // 不允许混合使用运算符
-                "no-underscore-dangle": "off", // 不允许下划线作为变量名之一
-                "no-under": "off", // 不允许混合使用运算符
-                "generator-star-spacing": "off",
-                semi: ["error", "always"], //语句强制分号结尾
-                "comma-dangle": ["error"],
-                eqeqeq: "off", // 不需要强制使用全等
-                "max-len": "off",
-                radix: "off", // parseInt不需要传第二个参数
-                "linebreak-style": "off", // 强制执行一致的换行样式，windows和mac不一样
-                "consistent-return": "off", // 箭头函数最后不需要最后强制return值
-                "no-unused-expressions": [
-                    "error",
-                    { allowShortCircuit: true, allowTernary: true }
-                ], // 允许您在表达式中使用三元运算符
-                "no-multi-spaces": ["error", { ignoreEOLComments: true }]
+                // allow async-await
+                "generator-star-spacing": 0,
+                // allow debugger during development
+                "no-debugger": process.env.NODE_ENV === "production" ? 2 : 0
             }
         }
     });
+    // https://blog.csdn.net/q3254421/article/details/83930327
     api.extendPackage({
         prettier: {
             printWidth: 80, // 每行代码长度（默认80）
