@@ -1,35 +1,44 @@
-import Vue from "vue";
-import axios from "./axios";
-import vueLoading from './loading.vue'
-var loadingComponent = null,  loadingIndex = 0;
+import Vue from 'vue';
+import axios from './axios';
+// import './element.js'
+// import 'quill/dist/quill.snow.css'
+<% if (options['ui-framework'] === 'element-ui') {%>
+    let loadingComponent ={}; 
+<% } %>
 const loading = {
     show() {
-        const div = document.createElement("div");
-        div.innerHTML = `<vue-loading ></vue-loading>`;
-        document.body.appendChild(div);
-        loadingComponent = new Vue({
-            el: div,
-            components: { vueLoading }
-        }).$children[0];
-        loadingIndex == 0 && loadingComponent.show();
-        loadingIndex += 1;
+        <% if (options['ui-framework'] === 'element-ui') {%>
+            loadingComponent = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+              });
+        <% } %>
+        <% if (options['ui-framework'] === 'iview') {%>
+            this.$Spin.show();
+        <% } %>
     },
-    hide() {
-        loadingIndex -= 1;
-        loadingIndex == 0 && loadingComponent.hide();
+    hide() {     
+        <% if (options['ui-framework'] === 'element-ui') {%>
+            loadingComponent.close();
+        <% } %>
+        <% if (options['ui-framework'] === 'iview') {%>
+            this.$Spin.hide();
+        <% } %>   
     }
 };
+
 Object.defineProperties(Vue.prototype, {
     $http: {
-        get(url, params, isLoading = false, config = {}) {
+        get(url, params, isLoading = false) {
             isLoading = isLoading || false;
             isLoading && loading.show();
             return new Promise((resolve, reject) => {
                 axios({
                     method: "get",
                     url,
-                    params,
-                    ...config
+                    params
                 })
                     .then(res => {
                         isLoading && loading.hide();
@@ -41,15 +50,14 @@ Object.defineProperties(Vue.prototype, {
                     });
             });
         },
-        post(url, data, isLoading = false, config = {}) {
+        post(url, data, isLoading = false) {
             isLoading = isLoading || false;
             isLoading && loading.show();
             return new Promise((resolve, reject) => {
                 axios({
                     method: "post",
                     url,
-                    data,
-                    ...config
+                    data
                 })
                     .then(res => {
                         isLoading && loading.hide();
