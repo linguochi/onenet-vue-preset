@@ -1,10 +1,14 @@
 <template>
-    <div class="container">
-        <div class="section home"><img src="../assets/logo.png"/>
-            <HelloWorld></HelloWorld>
+    <div id="app">
+        <div class="container">
+            <div class="section home"><img src="../assets/logo.png"/>
+                <HelloWorld></HelloWorld>
+            </div>
+            <router-view></router-view>
         </div>
     </div>
 </template>
+
 
 <script>
   import HelloWorld from "@/components/HelloWorld.vue";
