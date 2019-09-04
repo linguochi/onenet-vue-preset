@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import devNav from '@/components/devNav';
+  import devNav from "@/components/devNav";
 
   export default {
     components: {

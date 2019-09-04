@@ -19,9 +19,9 @@
       return {
         showDevNav: false,
         pageList: [
-          { name: 'Home', link: '/' },
-          { name: 'About', link: '/about' },
-          { name: 'Default', link: '/default' }
+          { name: "Home", link: "/" },
+          { name: "About", link: "/about" },
+          { name: "Default", link: "/default" }
         ]
       };
     },
