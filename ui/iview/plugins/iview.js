@@ -3,3 +3,4 @@ import iView from "iview";
 import "../style/iview.less";
 
 Vue.use(iView);
+window.$loading = Vue.$Spin
