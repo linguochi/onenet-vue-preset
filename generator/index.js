@@ -20,7 +20,6 @@ module.exports = (api, options, rootOptions) => {
   api.extendPackage({
     eslintConfig: {
       rules: {
-        'indent': ['error', 2],
         // vue 检测选项可以参考 https://github.com/AlloyTeam/eslint-config-alloy/blob/master/vue.js
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
