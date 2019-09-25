@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
-import store from './store';
-import './plugins/index';
+import router from '../../../template/src/router';
+import store from '../../../template/src/store';
+import '../../../template/src/plugins';
 import * as filters from './utils/filters';
 import * as directives from './utils/directives';
 import './style/global.less';
