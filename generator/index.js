@@ -21,8 +21,6 @@ module.exports = (api, options, rootOptions) => {
     eslintConfig: {
       rules: {
         'indent': ['error', 2],
-        // 关闭 prettier 里面的eslint选项
-        'prettier/prettier': 'off',
         // vue 检测选项可以参考 https://github.com/AlloyTeam/eslint-config-alloy/blob/master/vue.js
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
