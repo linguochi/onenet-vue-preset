@@ -24,7 +24,7 @@ module.exports = [
   },
   {
     name: "multiPage",
-    type: "conform",
+    type: "confirm",
     message: "使用多页？",
     default: false
   }
