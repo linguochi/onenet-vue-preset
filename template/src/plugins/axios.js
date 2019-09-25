@@ -134,7 +134,7 @@ axios.interceptors.response.use(
       console.log('update token ok>>>>>>');
       console.groupEnd();
     }
-    if (response.data.err && response.data.err != 0) {
+    if (response.data.err && Number(response.data.err) !== 0) {
       printError(response);
       return Promise.reject(response.data);
     } else {
@@ -145,25 +145,6 @@ axios.interceptors.response.use(
         printData(response);
         return Promise.resolve(response.data.data);
       }
-    }
-
-
-    if (response.code === 0) {
-      //接口请求成功，返回数据正常
-      if (response.data.page) {
-        return Promise.resolve(response.data);
-      } else {
-        return Promise.resolve(response.data.data);
-      }
-    } else {
-      //返回数据异常,可根据code返回值配置错误提示
-      switch (response.code) {
-        case 500:
-          break;
-        default:
-        //错误${response.code}`;
-      }
-      return Promise.reject(response.data);
     }
   },
   error => {
