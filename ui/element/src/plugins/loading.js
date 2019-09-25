@@ -1,7 +1,7 @@
 let loadingComponent = {};
 export default {
   show() {
-    loadingComponent = this.$loading({
+    loadingComponent = window.$loading({
       lock: true,
       text: "Loading",
       spinner: "el-icon-loading",
