@@ -6,7 +6,7 @@
  */
 module.exports = (api, options, rootOptions) => {
   const utils = require('./utils')(api);
-
+  const path = require('path');
   // 命令
   api.extendPackage({
     scripts: {
@@ -85,11 +85,35 @@ module.exports = (api, options, rootOptions) => {
     require('./element.js')(api, options);
   } else if (options['ui-framework'] === 'iview') {
     require('./iview.js')(api, options);
+  } else if (options['ui-framework'] === 'antDesign') {
+    api.extendPackage({
+      devDependencies: {
+        'vue-cli-plugin-ant-design': '^1.0.0'
+      }
+    });
+
+    api.onCreateComplete(() => {
+      require('child_process').spawnSync(
+        'vue',
+        [
+          'invoke',
+          'vue-cli-plugin-ant-design',
+          // the following 4 lines can be commented out if you need the plugin prompts
+          // '--config',
+          // 'standard',
+          // '--lintOn',
+          // 'save,commit'
+        ],
+        {
+          stdio: 'inherit',
+          cwd: path.join(process.cwd(), rootOptions.projectName)
+        });
+    });
   }
   if (options['multiPage']) {
-    api.render('../app-type/multi')
+    api.render('../app-type/multi');
   } else {
-    api.render('../app-type/single')
+    api.render('../app-type/single');
   }
   api.onCreateComplete(() => {
     utils.successTip();

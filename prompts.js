@@ -18,6 +18,10 @@ module.exports = [
       {
         name: "iView",
         value: "iview"
+      },
+      {
+        name: "Ant Design Vue",
+        value: "antDesign"
       }
     ],
     default: "none"
