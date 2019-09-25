@@ -21,5 +21,11 @@ module.exports = [
       }
     ],
     default: "none"
+  },
+  {
+    name: "multiPage",
+    type: "conform",
+    message: "使用多页？",
+    default: false
   }
 ];
