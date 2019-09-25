@@ -87,6 +87,8 @@ module.exports = (api, options, rootOptions) => {
     require('./iview.js')(api, options);
   } else if (options['ui-framework'] === 'antDesign') {
     require('./antdesign.js')(api, options);
+  } else if (options['ui-framework'] === 'vant') {
+    require('./vant.js')(api, options);
   }
   if (options['multiPage']) {
     api.render('../app-type/multi');
