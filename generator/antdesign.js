@@ -7,6 +7,7 @@ module.exports = (api, options, rootOptions) => {
   });
   api.render('../ui/antdesign');
   api.injectImports('src/plugins/index.js', `import './antdesign.js'`);
+  api.injectImports("src/plugins/index.js", `import loading from './loading'`);
   api.onCreateComplete(() => {
   });
 };
