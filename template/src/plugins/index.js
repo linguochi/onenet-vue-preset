@@ -1,5 +1,5 @@
-import Vue from "vue";
-import axios from "./axios";
+import Vue from 'vue';
+import axios from './axios';
 
 Object.defineProperties(Vue.prototype, {
   $http: {
@@ -8,7 +8,7 @@ Object.defineProperties(Vue.prototype, {
       isLoading && loading.show();
       return new Promise((resolve, reject) => {
         axios({
-          method: "get",
+          method: 'get',
           url,
           params
         })
@@ -27,7 +27,7 @@ Object.defineProperties(Vue.prototype, {
       isLoading && loading.show();
       return new Promise((resolve, reject) => {
         axios({
-          method: "post",
+          method: 'post',
           url,
           data
         })

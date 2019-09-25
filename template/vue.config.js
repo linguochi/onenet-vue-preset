@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 // 如果在preset.js中，useConfigFiles===true且存在并包含 vue 字段，
 // 会在项目根目录生成 vue.config.js 文件，用作整个项目的配置文件。
@@ -16,16 +16,16 @@ const generatePagesConfig = ({ pagesDir, customConfig = {} }) => {
 
   // 读取多页面目录生成 vue.config.js 中的 pages 配置
   if (!fs.existsSync(PAGES_DIR)) {
-    throw Error("vue.config.js pages 配置路径不存在");
+    throw Error('vue.config.js pages 配置路径不存在');
   }
 
   fs.readdirSync(PAGES_DIR)
-  .filter(pageDir => !pageDir.startsWith("."))
+  .filter(pageDir => !pageDir.startsWith('.'))
   .reduce((pagesConfig, fileName) => {
     pagesConfig[fileName] = {
       // page 的入口
-      entry: path.resolve(PAGES_DIR, fileName, "index.js"),
-      template: path.resolve(PAGES_DIR, fileName, "index.html"),
+      entry: path.resolve(PAGES_DIR, fileName, 'index.js'),
+      template: path.resolve(PAGES_DIR, fileName, 'index.html'),
       // 在 dist/index.html 的输出
       filename: `${fileName}.html`
     };
@@ -40,16 +40,16 @@ const generatePagesConfig = ({ pagesDir, customConfig = {} }) => {
 
 
 module.exports = {
-  publicPath: process.env.VUE_APP_BUILD_MODE === "PROD" ? "http://cdn_static_root/" : ".",
+  publicPath: process.env.VUE_APP_BUILD_MODE === 'PROD' ? 'http://cdn_static_root/' : '.',
   filenameHashing: true,
   productionSourceMap: false,
-  pages: generatePagesConfig({ pagesDir: "./src/pages/" }),
+  pages: generatePagesConfig({ pagesDir: './src/pages/' }),
   pluginOptions: {
-    "style-resources-loader": {
-      "preProcessor": "less",
-      "patterns": [
-        "./src/style/mixin.less",
-        "./src/style/theme.less"
+    'style-resources-loader': {
+      'preProcessor': 'less',
+      'patterns': [
+        './src/style/mixin.less',
+        './src/style/theme.less'
       ]
     }
   }

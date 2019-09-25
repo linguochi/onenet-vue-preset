@@ -24,26 +24,26 @@
     data() {
       return {
         isShow: false,
-        ui: "none"
+        ui: 'none'
       };
     },
     components: {},
     methods: {
       show() {
-        document.getElementsByTagName("body")[0].style.overflow = "hidden";
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
         this.isShow = true;
       },
       hide() {
-        document.getElementsByTagName("body")[0].style.overflow = "inherit";
+        document.getElementsByTagName('body')[0].style.overflow = 'inherit';
         this.isShow = false;
       }
     },
     mounted() {
       this.$loading
-        ? (this.ui = "element")
+        ? (this.ui = 'element')
         : this.$Spin
-        ? (this.ui = "iview")
-        : (this.ui = "none");
+        ? (this.ui = 'iview')
+        : (this.ui = 'none');
     }
   };
 </script>
