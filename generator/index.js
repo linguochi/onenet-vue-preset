@@ -10,6 +10,7 @@ module.exports = (api, options, rootOptions) => {
   // 命令
   api.extendPackage({
     scripts: {
+      'dev': 'vue-cli-service serve',
       'lint:fix': 'vue-cli-service lint --fix',
       'build:dev': 'vue-cli-service build --mode dev',
       'build:test': 'vue-cli-service build --mode test',

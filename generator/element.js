@@ -1,7 +1,7 @@
 module.exports = (api, options, rootOptions) => {
   api.extendPackage({
     dependencies: {
-      "element-ui": "^2.4.5"
+      "element-ui": "^2.12.0"
     },
   });
   api.render("../ui/element");
