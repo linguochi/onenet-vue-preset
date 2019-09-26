@@ -53,6 +53,7 @@ OneNET vue项目开发预设框架(模板)
 
 - 国际化i18n
 - 多页
+- UI组件库更改为按需引入
 - 常用的 Less 的 mixins 集合：[magicless](https://github.com/cklwblove/magicless)
 
 ## 目录介绍
