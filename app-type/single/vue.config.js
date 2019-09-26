@@ -39,6 +39,7 @@ module.exports = {
   },
   // 打包时不生成.map文件
   productionSourceMap: false,
+  // 利用style-resources-loader插件，给Vue单文件自动全局导入配置路径中的LESS变量和mixin函数。 这样在使用时不用每个文件都单独引入，就可以直接使用定义的Less变量。
   pluginOptions: {
     'style-resources-loader': {
       'preProcessor': 'less',
