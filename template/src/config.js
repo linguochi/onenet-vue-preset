@@ -9,6 +9,5 @@ export default {
       token: 'x-test-token',
       tokenRefresh: 'x-new-token'
     },
-    pwoeredBy: 'likequincy@outlook.com'
   }
 };

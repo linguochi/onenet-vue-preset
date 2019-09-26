@@ -1,10 +1,11 @@
 import HttpRequest from '../libs/axios';
 import config from '../config';
 
-const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro;
+const axiosConfig = config.axios;
+const baseUrl = process.env.NODE_ENV === 'development' ? axiosConfig.baseUrl.dev : axiosConfig.baseUrl.pro;
 
 const axios = new HttpRequest(baseUrl);
-const _axios = axios.request(config.axios);
+const _axios = axios.request(axiosConfig);
 
 
 export default {
