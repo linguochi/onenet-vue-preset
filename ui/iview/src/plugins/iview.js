@@ -1,6 +1,6 @@
-import Vue from "vue";
-import iView from "ui/iview/src/plugins/iview";
-import "../style/iview.less";
+import Vue from 'vue';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 
 Vue.use(iView);
-window.$loading = Vue.$Spin
+
