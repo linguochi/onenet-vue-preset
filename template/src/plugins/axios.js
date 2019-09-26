@@ -12,6 +12,7 @@ export default {
   install: (Vue, options) => {
     Vue.axios = _axios;
     window.axios = _axios;
+    window.$axios = _axios;
     Object.defineProperties(Vue.prototype, {
       axios: {
         get() {

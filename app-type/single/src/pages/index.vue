@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="section home"><img src="../assets/logo.png"/>
+        <div class="section home">
             <HelloWorld></HelloWorld>
         </div>
     </div>
@@ -9,11 +9,21 @@
 
 <script>
   import HelloWorld from '@/components/HelloWorld.vue';
-
+  import api from '../api';
   export default {
     name: 'home',
     components: {
       HelloWorld
+    },
+    mounted() {
+      api.user.getUser({ url: '/api/ddd' }).then(
+        res => {
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+        },
+      );
     }
   };
 </script>
