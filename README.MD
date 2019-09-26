@@ -32,3 +32,23 @@ OneNET vue项目开发预设框架(模板)
 # 进入到 本项目所在目录
 > vue create --preset ./onenet-vue-preset project-name
 ```
+
+## 项目特性
+
+- CSS 预编译语言：[less](http://lesscss.org/)
+
+- 代码检测与格式化：[eslint](https://eslint.org/) 、 [prettier](https://prettier.io/)
+
+- 移动 web 的适配方案：引入了 `postcss-pxtorem` 及 `lib-flexible`，可以自由地用 px 去开发
+
+- 常用的 js 工具类
+
+- 常用的 Less 的 mixins 集合：[magicless](https://github.com/cklwblove/magicless)
+
+- `style-resources-loader` 可以为我们的样式文件（css、less、scss、sass、stylus）注入样式资源，统一管理资源文件，如常用的 **变量(variable)，混合函数(mixins)等**。
+
+- Ajax: [axios](https://github.com/axios/axios)，做了一定的封装。
+
+- IconFont：使用阿里iconfont做图标字体；
+
+## 目录介绍
