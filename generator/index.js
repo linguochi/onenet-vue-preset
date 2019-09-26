@@ -73,6 +73,30 @@ module.exports = (api, options, rootOptions) => {
     .forEach(path => delete files[path]);
   });
 
+  // application 应用类型为 mobile
+  if (options.application === 'mobile') {
+    api.extendPackage({
+      dependencies: {
+        'lib-flexible': '^0.3.2'
+      },
+      devDependencies: {
+        'postcss-pxtorem': '^4.0.1'
+      },
+      postcss: {
+        plugins: {
+          'postcss-pxtorem': {
+            rootValue: 37.5,
+            unitPrecision: 5,
+            propList: ['height', 'width', 'padding', 'margin', 'top', 'left', 'right', 'bottom'],
+            selectorBlackList: [],
+            replace: true,
+            mediaQuery: false,
+            minPixelValue: 1
+          }
+        }
+      }
+    });
+  }
   api.render('../template'); // 使用 EJS 渲染 ../template 中的文件
   api.extendPackage({
     dependencies: {
