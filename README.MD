@@ -47,6 +47,8 @@ OneNET vue项目开发预设框架(模板)
 
 - Ajax: [axios](https://github.com/axios/axios)，做了一定的封装。
 
+- 路由自动生成
+
 - IconFont：使用阿里iconfont做图标字体；
 
 ## 下一步
