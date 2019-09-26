@@ -1,6 +1,6 @@
 export default {
   axios: {
-    baseURL: {
+    baseUrl: {
       dev: 'http://127.0.0.1:3000/api/v1/',
       pro: 'http://api.test.cn/',
       upload: 'http://api.test.cn/upload'
